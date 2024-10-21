@@ -8,11 +8,11 @@ This is a **blog website** where users can create, update, and delete posts.
 
 ## Features
 
-> Create posts
+ - Create posts
 
-> Update posts
+ - Update posts
 
-> Delete posts
+ - Delete posts
 
 ## Getting Started
 
