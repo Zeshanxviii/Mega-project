@@ -1,8 +1,31 @@
-# React + Vite
+# Mega Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a practice project where I have used Appwrite as a backend service.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a **blog website** where users can create, update, and delete posts.
+
+## Features
+
+> Create posts
+
+> Update posts
+
+> Delete posts
+
+## Getting Started
+
+To run this project locally, follow these steps:
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/Zeshanxviii/Mega-project.git
+2. Install dependencies
+    ```bash
+    pnpm i
+3. Run Local eviroment
+    ```bash
+    pnmp run dev
+
+> # Feel free to modify any section as needed!
