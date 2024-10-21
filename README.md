@@ -26,7 +26,7 @@ To run this project locally, follow these steps:
     pnpm i
 3. Run Local eviroment
     ```bash
-    pnmp run dev
+    pnpm run dev
 
 > # Feel free to modify any section as needed!
 
