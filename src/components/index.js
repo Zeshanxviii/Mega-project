@@ -6,5 +6,8 @@ import Container from './container/container'
 import Button from './header/Button'
 import Input from './header/input'
 import RTE from "./header/Rte";
+import PostForm from "./post-form/Post-Form";
+import PostCard from './header/PostCard'
+import ProtectedRoute from './header/AuthLayout'
 
-export {Header, Logo ,Footer ,LogoutBtn, Container, Input, Button, RTE}
+export {Header, Logo ,Footer ,LogoutBtn, Container, Input, Button, RTE, PostForm, PostCard, ProtectedRoute}
