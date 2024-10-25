@@ -1,17 +1,19 @@
 import React, {useEffect ,useState} from 'react'
 import { Container, PostCard} from '../components/index'
 import service from '../appwrite/config.service'
-
+import {useParams} from 'react-router-dom'
 
 function Home() {
     const [post , setPost] = useState([])
-    useEffect(()=>{
-        service.getpost()
-        .then((value) => {
-            if(value)
-            setPost(value)
+    const {slug} = useParams()
+
+    useEffect(() => {
+        service.getALlPost().then((posts) => {
+            if (posts) {
+                setPost(posts.documents)
+            }
         })
-    },[])
+    }, [])
   if(post.length === 0)
   {
     return (

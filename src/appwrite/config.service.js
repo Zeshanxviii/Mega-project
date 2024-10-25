@@ -76,19 +76,20 @@ export class Service {
     }
 
     //get post method
-    async getpost(slug)
-    {
+    async getPost(slug){
         try {
             return await this.databases.getDocument(
                 config.database_id,
                 config.collection_id,
                 slug
-            )
             
+            )
         } catch (error) {
-            console.log("Appwrite getPost error",error);
+            console.log("Appwrite serive :: getPost :: error", error)
+            return false
         }
     }
+    
 
     //get all post method
     async getALlPost(qurries = [Query.equal('status','Active')])

@@ -9,5 +9,7 @@ import RTE from "./header/Rte";
 import PostForm from "./post-form/Post-Form";
 import PostCard from './header/PostCard'
 import ProtectedRoute from './header/AuthLayout'
+import Login from "./header/Login";
+import Signup from "./header/Signup";
 
-export {Header, Logo ,Footer ,LogoutBtn, Container, Input, Button, RTE, PostForm, PostCard, ProtectedRoute}
+export {Header, Logo ,Footer ,LogoutBtn, Container, Input, Button, RTE, PostForm, PostCard, ProtectedRoute, Login, Signup}
