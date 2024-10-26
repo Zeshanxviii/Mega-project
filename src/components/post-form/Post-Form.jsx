@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import service from '../../appwrite/config.service'
-import { Button, RTE, Input, LogoutBtn } from '../index'
+import { Button, RTE, Input, LogoutBtn , Select } from '../index'
 
 import React from 'react'
 import { useCallback } from 'react'
@@ -18,7 +18,7 @@ function PostForm({ post }) {
             status: post?.slug || 'active  '
         }
     })
-    const userData = useSelector((state) => state.user.userData)
+    const userData = useSelector((state) => state.auth.userData)
 
     const submit = async (data) => {
         if (post) {
@@ -50,7 +50,7 @@ function PostForm({ post }) {
                 })
                 if(dbpost)
                 {
-                    navigate(`post/${post.$id}`)
+                    navigate(`post/${dbpost.$id}`)
                 }
             }
         }
@@ -124,7 +124,7 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} classname="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>

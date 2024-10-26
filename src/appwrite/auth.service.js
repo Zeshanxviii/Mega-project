@@ -17,12 +17,11 @@ export class AuthService {
     async createAccount({email,password,name})
     {
         try {
-            const userAccount = await this.account.create(ID.unique(),email,password,name)
+            const userAccount = await this.account.create(ID.unique(), email, password, name)
             if(userAccount)
             {
                 //call another method
-                this.account.login({email,password})
-                this.account.createSession()
+                return this.login({email, password});
             }
             else
             {
@@ -44,13 +43,17 @@ export class AuthService {
 
     //check currentUser
 
-    async getCurrentUser(){
+    async getCurrentUser() {
         try {
-            return await this.account.get()
+            const currentUser = await this.account.get();
+            return currentUser; // Explicitly returning the current user data
         } catch (error) {
-            throw error
+            console.log("Appwrite service :: getCurrentUser :: error", error);
         }
+    
+        return null; // Return null if there's an error
     }
+    
 
     // logout method
 

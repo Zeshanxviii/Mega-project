@@ -1,11 +1,11 @@
-import React, { Children } from 'react'
+import React from 'react';
 
-function Container({Children}) {
+function Container({ children }) {  // Change 'Children' to 'children'
     return (
         <div className='w-full max-w-7xl mx-auto px-4'>
-            {Children}
+            {children}  {/* Use 'children' here */}
         </div>
-    )
+    );
 }
 
-export default Container            
+export default Container;

@@ -8,7 +8,7 @@ function Home() {
     const {slug} = useParams()
 
     useEffect(() => {
-        service.getALlPost().then((posts) => {
+        service.getPost().then((posts) => {
             if (posts) {
                 setPost(posts.documents)
             }
@@ -25,7 +25,7 @@ function Home() {
     </Container>
 </div>)
 }
-else{
+
     return <div className='w-full py-8'>
         <Container>
             <div className='flex flex-wrap'>
@@ -39,7 +39,7 @@ else{
             </div>
         </Container>
     </div>
-}
+
 }
 
 export default Home

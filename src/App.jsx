@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import { Header,Footer } from './components/'
+import { Header,Footer } from './components/index.js'
 import {Outlet} from 'react-router-dom'
 import { TabGroup } from '@headlessui/react'
 import { useDispatch } from 'react-redux'
@@ -26,11 +26,16 @@ function App() {
     }, []
   )
   return !isLoading ? (
-    <TabGroup>
-      <Header />
-      <Outlet />
-    </TabGroup>
-  ):(<h1 className='text-center'>No users are register</h1>)
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+    <div className='w-full block'>
+      <Header/>
+      <main>
+      TODO:  <Outlet />
+      </main>
+      <Footer />
+    </div>
+  </div>
+  ):null
 }
 
 export default App
