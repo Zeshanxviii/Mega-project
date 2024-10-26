@@ -16,30 +16,28 @@ export class Service {
             // .listFiles(config.bucket_id)
     }
     // define createpost methods
-    async createPost({title, slug, content, featuredimage, status, userId})
-    {
+
+    async createPost({title , content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 config.database_id,
                 config.collection_id,
-                slug,
+                ID.unique(),
                 {
                     title,
-                    slug,
                     content,
-                    featuredimage,
+                    featuredImage,
                     status,
-                    userId
+                    userId,
                 }
-            )   
+            )
         } catch (error) {
-            console.log('Appwrite create post error: ', error);
-            
+            console.log("Appwrite serive :: createPost :: error", error);
         }
     }
 
     // updatepost method
-    async updatePost(slug,{title, content, featuredimage, status})
+    async updatePost(slug,{title, content, featuredImage, status})
     {
         try {
             return await this.databases.updateDocument(
@@ -49,7 +47,7 @@ export class Service {
                 {
                     title,
                     content,
-                    featuredimage,
+                    featuredImage,
                     status,
                 }
             )
