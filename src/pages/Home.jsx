@@ -1,45 +1,46 @@
-import React, {useEffect ,useState} from 'react'
-import { Container, PostCard} from '../components/index'
-import service from '../appwrite/config.service'
-import {useParams} from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import service from "../appwrite/config.service";
+import {Container, PostCard} from '../components/index'
 
 function Home() {
-    const [post , setPost] = useState([])
-    const {slug} = useParams()
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         service.getPost().then((posts) => {
             if (posts) {
-                setPost(posts.documents)
+                setPosts(posts.documents)
             }
         })
     }, [])
-  if(post.length === 0)
-  {
-    return (
-<div className='p-8 w-full'>
-    <Container>
-        <div className='flex text-center justify-center'>
-            <h1>Login to read post</h1>
-        </div>
-    </Container>
-</div>)
-}
-
-    return <div className='w-full py-8'>
-        <Container>
-            <div className='flex flex-wrap'>
-                {post.map(
-                    (post) => {
-                        <div key={post.$id} className='p-2 w-1/4'>
-                            <PostCard {...post}/>
+  
+    if (posts.length === 0) {
+        return (
+            <div className="w-full py-8 mt-4 text-center">
+                <Container>
+                    <div className="flex flex-wrap">
+                        <div className="p-2 w-full">
+                            <h1 className="text-2xl font-bold hover:text-gray-500">
+                                Login to read posts
+                            </h1>
                         </div>
-                    }
-                )}
+                    </div>
+                </Container>
             </div>
-        </Container>
-    </div>
-
+        )
+    }
+    return (
+        <div className='w-full py-8'>
+            <Container>
+                <div className='flex flex-wrap'>
+                    {posts.map((post) => (
+                        <div key={post.$id} className='p-2 w-1/4'>
+                            <PostCard {...post} />
+                        </div>
+                    ))}
+                </div>
+            </Container>
+        </div>
+    )
 }
 
 export default Home

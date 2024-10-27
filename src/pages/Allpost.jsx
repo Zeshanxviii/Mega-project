@@ -17,11 +17,11 @@ function Allpost() {
 return (
     <div className='w-full py-8'>
         <Container className='flex flex-wrap'>
-            {post.map((post) => {
+            {post.map((post) => (   
                 <div key={post.$id}>
-                    <PostCard post={post} />
+                    <PostCard title={post.title} featuredImage={post.featuredImage} $id={post.$id} content={post.content} />
                 </div>
-            })}
+            ))}
         </Container>
     </div>
 )

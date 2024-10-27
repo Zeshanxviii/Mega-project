@@ -17,12 +17,12 @@ export class Service {
     }
     // define createpost methods
 
-    async createPost({title , content, featuredImage, status, userId}){
+    async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 config.database_id,
                 config.collection_id,
-                ID.unique(),
+                slug,
                 {
                     title,
                     content,
@@ -84,7 +84,7 @@ export class Service {
             )
         } catch (error) {
             console.log("Appwrite serive :: getPost :: error", error)
-            return false
+            return null
         }
     }
     

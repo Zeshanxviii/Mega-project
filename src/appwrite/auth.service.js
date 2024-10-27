@@ -58,16 +58,11 @@ export class AuthService {
     // logout method
 
     async logout() {
+
         try {
-            const session = await this.account.getSessions(); // Retrieve the current session
-            if (session.length > 0) {
-                const sessionId = session[0].$id; // Use the correct session ID
-                return await this.account.deleteSession(sessionId);
-            } else {
-                throw new Error("No active session found");
-            }
+            await this.account.deleteSessions();
         } catch (error) {
-            throw error;
+            console.log("Appwrite serive :: logout :: error", error);
         }
     }
 
