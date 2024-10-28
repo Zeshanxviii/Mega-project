@@ -1,5 +1,6 @@
 import {Client, ID, Databases, Storage, Query} from 'appwrite'
 import config from '../config/config'
+import authService from './auth.service';
 
 export class Service {
     client = new Client();
@@ -72,22 +73,23 @@ export class Service {
             return false
         }
     }
-
-    //get post method
-    async getPost(slug){
+    async getUserPosts() {
         try {
-            return await this.databases.getDocument(
-                config.database_id,
-                config.collection_id,
-                slug
-            
-            )
+            const currentUser = await authService.getCurrentUser(); // Get the current user
+            const userId = currentUser.$id; // Get the user ID
+
+            // Fetch posts created by the user
+            const userPosts = await databaseService.listDocuments(
+                config.collection_id, [
+                Appwrite.Query.equal('userId', userId),
+            ]);
+
+            return userPosts.documents; // Return the array of user posts
         } catch (error) {
-            console.log("Appwrite serive :: getPost :: error", error)
-            return null
+            console.error("Error fetching user posts:", error);
+            return []; // Return an empty array on error
         }
     }
-    
 
     //get all post method
     async getALlPost(qurries = [Query.equal('status','Active')])
