@@ -1,6 +1,5 @@
 import {Client, ID, Databases, Storage, Query} from 'appwrite'
 import config from '../config/config'
-import authService from './auth.service';
 
 export class Service {
     client = new Client();
@@ -18,12 +17,12 @@ export class Service {
     }
     // define createpost methods
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({title, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 config.database_id,
                 config.collection_id,
-                slug,
+                ID.unique(),
                 {
                     title,
                     content,
@@ -73,21 +72,28 @@ export class Service {
             return false
         }
     }
-    async getUserPosts() {
+
+    async getPost()
+    {
         try {
-            const currentUser = await authService.getCurrentUser(); // Get the current user
-            const userId = currentUser.$id; // Get the user ID
-
-            // Fetch posts created by the user
-            const userPosts = await databaseService.listDocuments(
-                config.collection_id, [
-                Appwrite.Query.equal('userId', userId),
-            ]);
-
-            return userPosts.documents; // Return the array of user posts
+            
         } catch (error) {
-            console.error("Error fetching user posts:", error);
-            return []; // Return an empty array on error
+            console.log("Appwrite getPost error :: ", error);            
+        }
+    }
+
+    async getPosts(queries = [Query.equal("status", "active")]){
+        try {
+            return await this.databases.listDocuments(
+                config.database_id,
+                config.collection_id,
+                queries,
+                
+
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: getPosts :: error", error);
+            return false
         }
     }
 

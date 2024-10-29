@@ -37,7 +37,8 @@ export class AuthService {
         try {
             return await this.account.createEmailPasswordSession(email,password)
         } catch (error) {
-            throw error
+            console.error("Login error:", error);
+        throw new Error("Login failed. Please check your credentials."); // C
         }
     }
 
@@ -45,8 +46,8 @@ export class AuthService {
 
     async getCurrentUser() {
         try {
-            const currentUser = await this.account.get();
-            return currentUser; // Explicitly returning the current user data
+            return await this.account.get();
+             // Explicitly returning the current user data
         } catch (error) {
             console.log("Appwrite service :: getCurrentUser :: error", error);
         }

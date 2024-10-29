@@ -15,9 +15,14 @@ function Login() {
     const login = async (data) => {
         setError(' ')
         try {
-            const userData = authService.getCurrentUser()
-            if(userData) dispatch(authLogin(userData))
-                navigate("/")            
+            const session = authService.login(data)
+
+            if(session){
+                const userData = authService.getCurrentUser()
+                if(userData)
+                    dispatch(authLogin(userData))
+                    navigate("/")        
+            } 
         } catch (error) {
             setError(error.message)
         }        
