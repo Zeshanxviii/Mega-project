@@ -6,6 +6,7 @@ import Login from "./Login";
 import Post from "./Post";
 import Signup from "./Signup";
 
+
 export {
     Addpost,
     Allpost,
@@ -13,5 +14,5 @@ export {
     Home,
     Login,
     Post,
-    Signup
+    Signup,
 }

@@ -1,32 +1,34 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React, { useState , useEffect } from 'react'
+import { Link, redirect } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Logo ,Button ,Input } from '../index'
 import { login as authLogin } from '../../store/feature/authSlice'
 import authService from '../../appwrite/auth.service'
 import { useForm} from 'react-hook-form'
 
 function Login() {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const dispatch = useDispatch()
     const { register ,handleSubmit } = useForm()
     const [error , setError] = useState("")
-
+  
     const login = async (data) => {
         setError(' ')
         try {
-            const session = authService.login(data)
+            const session = await authService.login(data)
 
             if(session){
-                const userData = authService.getCurrentUser()
+                const userData = await authService.getCurrentUser()
                 if(userData)
                     dispatch(authLogin(userData))
-                    navigate("/")        
+                    redirect('/home')
             } 
         } catch (error) {
             setError(error.message)
-        }        
+        } 
     }
+    
+
     return (
         <div className='flex items-center justify-center w-full'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
